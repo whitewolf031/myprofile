@@ -1,28 +1,29 @@
-# Dockerfile
 FROM python:3.11-slim
 
-# System kutubxonalarni o‘rnatish (psycopg2 uchun kerak)
+# System kutubxonalarni o‘rnatish
 RUN apt-get update \
     && apt-get install -y --no-install-recommends gcc libpq-dev \
     && rm -rf /var/lib/apt/lists/*
 
-# Ishchi katalog
 WORKDIR /app
 
-# Python sozlamalari
 ENV PYTHONDONTWRITEBYTECODE=1
 ENV PYTHONUNBUFFERED=1
 
-# pip yangilash va requirements o‘rnatish
 COPY requirements.txt /app/
 RUN pip install --upgrade pip
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Loyihani konteynerga ko‘chirish
 COPY . /app/
 
-# Port ochish
+# entrypoint.sh faylini nusxalash va ruxsat berish
+COPY entrypoint.sh /app/
+RUN chmod +x /app/entrypoint.sh
+
 EXPOSE 8000
+
+# entrypoint orqali migrate va createsuperuser bajariladi
+ENTRYPOINT ["/app/entrypoint.sh"]
 
 # Django serverni ishga tushirish
 CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
