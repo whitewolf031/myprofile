@@ -35,9 +35,9 @@ INSTALLED_APPS += ['corsheaders',]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     "whitenoise.middleware.WhiteNoiseMiddleware",
     'django.contrib.sessions.middleware.SessionMiddleware',
-    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -130,3 +130,27 @@ MEDIA_TEST_ROOT = os.path.join(BASE_DIR, 'media/test/')
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+env = environ.Env(
+    DEBUG=(bool, False)
+)
+
+environ.Env.read_env(os.path.join(BASE_DIR, ".env"))
+
+# Swagger sozlamalari
+SWAGGER_SETTINGS = {
+    "DEFAULT_INFO": "config.urls.api_info",
+    "USE_SESSION_AUTH": False,
+    "SECURITY_DEFINITIONS": {
+        "Bearer": {
+            "type": "apiKey",
+            "name": "Authorization",
+            "in": "header"
+        }
+    },
+    "DEFAULT_API_URL": env.str("SWAGGER_DEFAULT_API_URL", "http://127.0.0.1:8000/"),
+}
+
+# Local yoki productionga qarab HTTPS majburlash
+if env.bool("USE_HTTPS", default=False):
+    SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
