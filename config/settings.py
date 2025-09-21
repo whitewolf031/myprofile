@@ -131,19 +131,5 @@ MEDIA_TEST_ROOT = os.path.join(BASE_DIR, 'media/test/')
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-# SWAGGER_SETTINGS = {
-#     "DEFAULT_INFO": "config.urls.api_info",  # sening schema_info joylashgan joying
-#     "USE_SESSION_AUTH": False,
-#     "SECURITY_DEFINITIONS": {
-#         "Bearer": {
-#             "type": "apiKey",
-#             "name": "Authorization",
-#             "in": "header"
-#         }
-#     },
-#     # faqat HTTPS chiqishi uchun:
-#     "DEFAULT_API_URL": "https://myprofile-production-5001.up.railway.app/",
-# }
-
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 USE_X_FORWARDED_HOST = True
