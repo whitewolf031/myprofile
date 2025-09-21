@@ -131,23 +131,8 @@ MEDIA_TEST_ROOT = os.path.join(BASE_DIR, 'media/test/')
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-SWAGGER_SETTINGS = {
-    "DEFAULT_INFO": "config.urls.api_info",  # sening schema_info joylashgan joying
-    "USE_SESSION_AUTH": False,
-    "SECURITY_DEFINITIONS": {
-        "Bearer": {
-            "type": "apiKey",
-            "name": "Authorization",
-            "in": "header"
-        }
-    },
-    # faqat HTTPS chiqishi uchun:
-    "DEFAULT_API_URL": "https://myprofile-production-5001.up.railway.app/",
-}
-
-# # Swagger sozlamalari
 # SWAGGER_SETTINGS = {
-#     "DEFAULT_INFO": "config.urls.api_info",
+#     "DEFAULT_INFO": "config.urls.api_info",  # sening schema_info joylashgan joying
 #     "USE_SESSION_AUTH": False,
 #     "SECURITY_DEFINITIONS": {
 #         "Bearer": {
@@ -156,9 +141,9 @@ SWAGGER_SETTINGS = {
 #             "in": "header"
 #         }
 #     },
-#     "DEFAULT_API_URL": env.str("SWAGGER_DEFAULT_API_URL", "http://127.0.0.1:8000/"),
+#     # faqat HTTPS chiqishi uchun:
+#     "DEFAULT_API_URL": "https://myprofile-production-5001.up.railway.app/",
 # }
 
-# # Local yoki productionga qarab HTTPS majburlash
-# if env.bool("USE_HTTPS", default=False):
-#     SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+USE_X_FORWARDED_HOST = True
