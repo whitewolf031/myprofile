@@ -1,8 +1,8 @@
 from django.shortcuts import render
 from rest_framework import generics
 from rest_framework.permissions import AllowAny, IsAdminUser
-from .models import UsersInfo, DevInfo
-from .serializers import ContactSerializer
+from ..models.models import UsersInfo
+from ..serializers import ContactSerializer
 import os
 import telebot
 from dotenv import load_dotenv
@@ -28,10 +28,5 @@ class ContactCreateView(generics.CreateAPIView):
         data = instance.created_at
         date = str(data)[0:10]
         time = str(data)[11:19]
-        message = f"Contact ({date}/{time}): \nName: {instance.full_name}\nEmail: {instance.email}\nPhone: {instance.phone}\nsubject: {instance.subject}\nmessage: {instance.message}"
+        message = f"Contact ({date}/{time}): \nName: {instance.name}\nEmail: {instance.email}\nmessage: {instance.message}"
         return send_telegram_message(message)
-
-class DevAdminControl(viewsets.ModelViewSet):
-    queryset = UsersInfo.objects.all()
-    serializer_class = ContactSerializer
-    permission_classes = [IsAdminUser]
