@@ -12,7 +12,7 @@ schema_view = get_schema_view(
     ),
     public=True,
     permission_classes=(permissions.AllowAny,),
-    url=getattr(settings, "SWAGGER_API_URL", "http://127.0.0.1:8000/uz/"),  # 👈 env orqali boshqariladi
+    url="https://myprofile-production-5001.up.railway.app/uz/",  # 👈 locale qo‘shildi
 )
 
 urlpatterns = [
