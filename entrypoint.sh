@@ -1,28 +1,15 @@
 #!/bin/sh
 
-# Migratsiya fayllarini yaratish
-python manage.py makemigrations --noinput
-
-# Migratsiyalarni qo‘llash
 python manage.py migrate --noinput
 
-# Superuser yaratish (agar mavjud bo‘lmasa)
-python manage.py shell << EOF
-from django.contrib.auth import get_user_model
-import os
+# Superuser yaratish (agar kerak bo‘lsa)
+python manage.py createsuperuser \
+  --noinput \
+  --username admin \
+  --email admin@example.com || true
 
-User = get_user_model()
+# Django static fayllarini yig‘ish
+python manage.py collectstatic --noinput
 
-username = os.getenv("DJANGO_SUPERUSER_USERNAME", "admin")
-email = os.getenv("DJANGO_SUPERUSER_EMAIL", "admin@example.com")
-password = os.getenv("DJANGO_SUPERUSER_PASSWORD", "admin123")
-
-if not User.objects.filter(username=username).exists():
-    User.objects.create_superuser(username=username, email=email, password=password)
-    print(f"Superuser {username} created.")
-else:
-    print(f"Superuser {username} already exists.")
-EOF
-
-# Django serverni ishga tushirish (docker-compose.yml dan kelgan command)
-exec "$@"
+# Gunicorn orqali loyihani ishga tushirish
+exec gunicorn config.wsgi:application --bind 0.0.0.0:$PORT
