@@ -1,15 +1,12 @@
 #!/bin/sh
 
-# Kod ichida error bo'lsa script to'xtasin
-set -e
-
-echo "📌 Applying makemigrations..."
+# Migratsiya fayllarini yaratish
 python manage.py makemigrations --noinput
 
-echo "📌 Applying migrate..."
+# Migratsiyalarni qo‘llash
 python manage.py migrate --noinput
 
-echo "📌 Creating superuser if not exists..."
+# Superuser yaratish (agar mavjud bo‘lmasa)
 python manage.py shell << EOF
 from django.contrib.auth import get_user_model
 import os
@@ -22,10 +19,10 @@ password = os.getenv("DJANGO_SUPERUSER_PASSWORD", "admin123")
 
 if not User.objects.filter(username=username).exists():
     User.objects.create_superuser(username=username, email=email, password=password)
-    print(f"✅ Superuser {username} created.")
+    print(f"Superuser {username} created.")
 else:
-    print(f"ℹ️ Superuser {username} already exists.")
+    print(f"Superuser {username} already exists.")
 EOF
 
-# Oxirida serverni ishga tushirish (CMD'dan kelgan komandani oladi)
+# Django serverni ishga tushirish (docker-compose.yml dan kelgan command)
 exec "$@"
