@@ -13,6 +13,7 @@ class DevInfo(models.Model):
     def __str__(self):
         return self.full_name
 
+
 class Experience(models.Model):
     EMPLOYMENT_TYPE_CHOICES = [
         ('full_time', 'Full-time'),
@@ -20,29 +21,30 @@ class Experience(models.Model):
         ('both', 'Full-time & Part-time'),
     ]
 
-    title = models.CharField(max_length=255)              # Software Engineer (Full-Stack)
+    title = models.CharField(max_length=255)  # Software Engineer (Full-Stack)
     company = models.CharField(max_length=255, blank=True, null=True)  # optional (agar ko'rsatmoqchi bo'lsangiz)
     employment_type = models.CharField(
         max_length=20,
         choices=EMPLOYMENT_TYPE_CHOICES
     )
-    location = models.CharField(max_length=255, blank=True, null=True) # Tashkent, UZ
+    location = models.CharField(max_length=255, blank=True, null=True)  # Tashkent, UZ
     start_date = models.DateField()
-    end_date = models.DateField(blank=True, null=True)    # Present bo'lsa null qoldiriladi
+    end_date = models.DateField(blank=True, null=True)  # Present bo'lsa null qoldiriladi
     is_current = models.BooleanField(default=False)
 
     # Extra fields (JSON yoki TextField qilib yozsak ham bo‘ladi)
-    achievements = models.TextField(blank=True, null=True)    # Key Achievements
-    responsibilities = models.TextField(blank=True, null=True) # Responsibilities
-    teaching_focus = models.TextField(blank=True, null=True)   # Teaching focus (faqat instructorlar uchun)
+    achievements = models.TextField(blank=True, null=True)  # Key Achievements
+    responsibilities = models.TextField(blank=True, null=True)  # Responsibilities
+    teaching_focus = models.TextField(blank=True, null=True)  # Teaching focus (faqat instructorlar uchun)
 
     # Student demographics
     student_count = models.PositiveIntegerField(blank=True, null=True)
-    age_range = models.CharField(max_length=50, blank=True, null=True) # "15-30 years"
+    age_range = models.CharField(max_length=50, blank=True, null=True)  # "15-30 years"
 
     def __str__(self):
         return f"{self.title} ({self.employment_type})"
-    
+
+
 class Project(models.Model):
     TECHNOLOGY_CHOICES = [
         ("python", "Python"),
@@ -59,12 +61,9 @@ class Project(models.Model):
     ]
     title = models.CharField(max_length=200)  # Proyekt nomi
     description = models.TextField()  # Proyekt haqida qisqacha
-    technologies = models.CharField(
-        max_length=50,
-        choices=TECHNOLOGY_CHOICES
-    )
+    technologies = models.JSONField()
     project_url = models.URLField(blank=True, null=True)  # "View Project" linki
     created_at = models.DateTimeField(auto_now_add=True)  # qachon qo‘shilgan
-    
+
     def __str__(self):
         return self.title
