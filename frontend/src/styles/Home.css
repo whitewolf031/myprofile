@@ -178,16 +178,34 @@
     cursor: pointer;
 }
 
+/* ===== O'zgartirilgan card1 ===== */
 .card1 {
-    width: 480px;
-    height: 40px;
-    background-color: gray;
-    border-radius: 8px;
+    width: 100%;
+    max-width: 480px;
+    min-height: 45px;
+    height: auto;
+    padding: 8px 7px;
+    
+    background-color: rgba(55, 65, 81, 0.7); 
+    border: 1px solid rgba(75, 85, 99, 0.4);
+    border-radius: 12px;
 
     display: flex;
-    align-items: center;      /* tepa-past o‘rtaga */
-    justify-content: space-between; /* chap va o‘ng ajratadi */
-    padding: 0 16px;          /* ichki joy */
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px; /* Matnlar orasida masofa qoldiradi */
+    transition: background 0.3s ease;
+}
+
+.card1:hover {
+    background-color: rgba(55, 65, 81, 0.9);
+}
+
+/* Chap tarafdagi asosiy matn rangi */
+.card-text {
+    color: #e5e7eb; /* Och kulrang/oqish */
+    font-weight: 500;
+    font-size: 15px;
 }
 
 .info-row {
