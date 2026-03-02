@@ -1,12 +1,9 @@
 /* ===== GLOBAL ===== */
-
 .portfolio-container {
     background: #111827;
     color: white;
 }
-
 /* ===== NAVBAR ===== */
-
 .navbar {
     position: fixed;
     top: 0;
@@ -16,20 +13,17 @@
     z-index: 50;
     border-bottom: 1px solid #1f2937;
 }
-
 .nav-inner {
     max-width: 72rem;
     margin: auto;
     padding: 0 24px;
 }
-
 .nav-content {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 16px 0;
 }
-
 .logo {
     font-size: 22px;
     font-family: Tahoma;
@@ -38,14 +32,11 @@
     -webkit-background-clip: text;
     color: white;
 }
-
 /* Desktop menu */
-
 .nav-menu {
     display: flex;
     gap: 32px;
 }
-
 .nav-button {
     background: none;
     border: none;
@@ -54,18 +45,14 @@
     transition: 0.2s;
     padding-bottom: 6px;
 }
-
 .nav-button:hover {
     color: #60a5fa;
 }
-
 .nav-active {
     color: #60a5fa;
     border-bottom: 2px solid #60a5fa;
 }
-
 /* ===== HERO ===== */
-
 .hero {
     min-height: 75vh;
     display: flex;
@@ -73,14 +60,23 @@
     text-align: center;
     padding-top: 50px;
 }
-
 .hero-content {
     position: relative;
     max-width: 64rem;
     padding: 20px;
     margin-top: 70px;
+    background: #111827;
+    color: white;
+    opacity: 0;
+    transform: translateY(40px);
+    animation: fadeUp 1s ease forwards;
 }
-
+@keyframes fadeUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
 /* Elegant heading font */
 .hero-title {
     font-family: Tahoma;
@@ -88,7 +84,6 @@
     letter-spacing: 1px;
     color: white;
 }
-
 /* Subtitle style */
 .hero-subtitle {
     font-size: 22px;
@@ -97,7 +92,6 @@
     margin-top: 10px;
     text-align: center;
 }
-
 /* Description text */
 .hero-description {
     font-size: 18px;
@@ -107,53 +101,41 @@
     margin-top: 20px;
     text-align: center;
 }
-
 .hero-bg {
     position: absolute;
     inset: 0;
     background: radial-gradient(circle at top left, rgba(37,99,235,0.2), #111827, rgba(34,197,94,0.2));
 }
-
 /* Gradient Text */
-
 .gradient-text {
     background: linear-gradient(to right, #60a5fa, white, #4ade80);
     -webkit-background-clip: text;
     color: transparent;
 }
-
 /* ===== SECTIONS ===== */
-
 .section {
     padding: 80px 20px;
     font-family: Tahoma;
 }
-
 .section-dark {
     background: rgba(31,41,55,0.5);
 }
-
 .section-container {
     max-width: 72rem;
     margin: auto;
 }
-
 /* Grid */
-
 .grid-2 {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 48px;
 }
-
 .grid-4 {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 32px;
 }
-
 /* Cards */
-
 .card {
     background: #1f2937;
     border: 1px solid #374151;
@@ -161,14 +143,11 @@
     padding: 32px;
     transition: 0.3s;
 }
-
 .card:hover {
     border-color: #3b82f6;
     transform: scale(1.05);
 }
-
 /* Buttons */
-
 .btn-primary {
     background: linear-gradient(to right, #2563eb, #16a34a);
     border: none;
@@ -177,7 +156,6 @@
     color: white;
     cursor: pointer;
 }
-
 /* ===== O'zgartirilgan card1 ===== */
 .card1 {
     width: 100%;
@@ -185,49 +163,194 @@
     min-height: 45px;
     height: auto;
     padding: 8px 7px;
-    
-    background-color: rgba(55, 65, 81, 0.7); 
+   
+    background-color: rgba(55, 65, 81, 0.7);
     border: 1px solid rgba(75, 85, 99, 0.4);
     border-radius: 12px;
-
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 10px; /* Matnlar orasida masofa qoldiradi */
     transition: background 0.3s ease;
 }
-
 .card1:hover {
     background-color: rgba(55, 65, 81, 0.9);
 }
-
 /* Chap tarafdagi asosiy matn rangi */
 .card-text {
     color: #e5e7eb; /* Och kulrang/oqish */
     font-weight: 500;
     font-size: 15px;
 }
-
 .info-row {
     display: flex;
-    align-items: center;   /* icon va text bir xil vertikal chiziqda */
-    gap: 10px;             /* icon bilan yozuv orasidagi masofa */
+    align-items: center; /* icon va text bir xil vertikal chiziqda */
+    gap: 10px; /* icon bilan yozuv orasidagi masofa */
     margin-top: 12px;
     font-size: 16px;
 }
-
 .info-icon {
     font-size: 22px;
 }
-
 .location {
     color: #60a5fa;
 }
-
 .phone {
     color: #34d399;
 }
-
 .email {
     color: #a78bfa;
+}
+/* BUTTON BASE */
+.btn-primary-custom,
+.btn-secondary-custom {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin-right: 5px;
+    padding: 12px 26px;
+    border-radius: 10px;
+    font-weight: 600;
+    font-family: Tahoma;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+}
+/* PRIMARY BUTTON */
+.btn-primary-custom {
+    background: linear-gradient(to right, #2563eb, #16a34a);
+    color: white;
+    border: none;
+}
+.btn-primary-custom:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(37, 99, 235, 0.4);
+}
+/* SECONDARY BUTTON */
+.btn-secondary-custom {
+    background: transparent;
+    border: 1px solid #374151;
+    color: #d1d5db;
+    margin-left: 5px;
+}
+.btn-secondary-custom:hover {
+    border-color: #60a5fa;
+    color: #60a5fa;
+    transform: translateY(-3px);
+}
+/* ICON */
+.btn-icon {
+    font-size: 20px;
+}
+/* ----------------------------------experience--------------------------------- */
+.experience-card {
+    background: #1f2937;
+    border: 1px solid #374151;
+    border-radius: 14px;
+    padding: 28px;
+    transition: 0.3s;
+}
+.experience-card:hover {
+    transform: translateY(-5px);
+    border-color: #3b82f6;
+}
+.experience-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+.experience-title {
+    color: #38bdf8;
+    font-size: 24px;
+}
+.experience-company {
+    color: #d1d5db;
+}
+.experience-location {
+    color: #9ca3af;
+}
+.experience-meta {
+    display: flex;
+    justify-content: space-between;
+    color: #94a3b8;
+    margin-bottom: 20px;
+}
+.experiences-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+    gap: 32px;
+}
+.experience-details {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    margin-top: 20px;
+}
+.experience-details h4 {
+    color: #34d399;
+    font-size: 18px;
+    margin-bottom: 16px;
+}
+.achievement-item, .responsibility-item {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 12px;
+    font-size: 15px;
+    line-height: 1.5;
+    color: #e5e7eb;
+}
+.bullet {
+    font-size: 16px;
+    margin-right: 10px;
+    min-width: 10px;
+}
+
+.empty-experience {
+  display: flex;
+  justify-content: center;
+  padding: 60px 20px;
+}
+
+.empty-card {
+  background: linear-gradient(135deg, #1f2937 0%, #111827 100%);
+  border: 1px solid #374151;
+  border-radius: 16px;
+  padding: 48px 32px;
+  max-width: 680px;
+  text-align: center;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.empty-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px rgba(59, 130, 246, 0.15);
+}
+
+.empty-icon {
+  font-size: 64px;
+  margin-bottom: 24px;
+  line-height: 1;
+}
+
+.empty-card h3 {
+  color: #60a5fa;
+  font-size: 28px;
+  margin-bottom: 16px;
+  font-weight: 600;
+}
+
+.empty-card p {
+  color: #d1d5db;
+  font-size: 18px;
+  line-height: 1.6;
+  margin-bottom: 16px;
+}
+
+.empty-card .subtitle {
+  color: #9ca3af;
+  font-size: 16px;
+  font-style: italic;
+  margin-top: 24px;
 }
