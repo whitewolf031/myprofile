@@ -4,6 +4,8 @@ import { FaAlignJustify, FaCode } from "react-icons/fa";
 import api from "../api";
 import "../styles/Home.css";
 function Home() {
+    const [formSubmitted, setFormSubmitted] = useState(false);
+    const [loading, setLoading] = useState(false);
     const [profile, setProfile] = useState(null);
     const [experience, setExperience] = useState([]);
     const [projects, setProjects] = useState([]);
@@ -64,29 +66,31 @@ function Home() {
         setProjects(res.data);
     };
 
-    const createContact = (e) => {
+    const createContact = async (e) => {
         e.preventDefault();
-        api.post("/contact/create", {
+        setLoading(true);
+
+        try {
+            const res = await api.post("/contact/create/", {
             name,
             email,
-            message
-        })
-        .then((res) => {
+            message,
+            });
+
             if (res.status === 201 || res.status === 200) {
-                alert("Message sent successfully!");
-               
-                // Formani tozalash
-                setName("");
-                setEmail("");
-                setMessage("");
+            setFormSubmitted(true);
+            setName("");
+            setEmail("");
+            setMessage("");
             } else {
-                alert("Failed to send message.");
+            alert("Failed to send message. Please try again.");
             }
-        })
-        .catch((err) => {
+        } catch (err) {
             console.error(err);
-            alert("Error sending message.");
-        });
+            alert("Error sending message. Please check your connection.");
+        } finally {
+            setLoading(false);
+        }
     };
 
     const scrollToSection = (sectionId) => {
@@ -104,7 +108,15 @@ function Home() {
                 <div className="nav-content">
                     {/* Logo */}
                     <div className="logo">
-                        Sardorbek Ergashev
+                        <a
+                            href="#home"
+                            onClick={(e) => {
+                                e.preventDefault();
+                                scrollToSection("home");
+                            }}
+                        >
+                            Sardorbek Ergashev
+                        </a>
                     </div>
                     {/* Desktop Menu */}
                     <div className="nav-menu">
@@ -293,46 +305,321 @@ function Home() {
             {/* SKILLS */}
             <section id="skills" className="section section-dark">
                 <div className="section-container">
-                    <h1>Skills Section</h1>
+                    <h2 style={{ textAlign: "center", marginBottom: "50px", fontSize: "2.5rem" }}>
+                    Skills
+                    </h2>
+
+                    <div className="skills-grid">
+                    {/* 1. Languages */}
+                    <div className="skill-category-card">
+                        <div className="category-header">
+                        <span className="category-icon">{"< />"}</span>
+                        <h3>Languages</h3>
+                        </div>
+                        <div className="skill-list">
+                        <div className="skill-item">
+                            <span className="skill-name">Python</span>
+                            <div className="progress-container">
+                            <div className="progress-bar">
+                                <div className="progress python" style={{ width: "95%" }}></div>
+                            </div>
+                            </div>
+                        </div>
+                        <div className="skill-item">
+                            <span className="skill-name">PHP</span>
+                            <div className="progress-container">
+                            <div className="progress-bar">
+                                <div className="progress php" style={{ width: "70%" }}></div>
+                            </div>
+                            </div>
+                        </div>
+                        <div className="skill-item">
+                            <span className="skill-name">JavaScript</span>
+                            <div className="progress-container">
+                            <div className="progress-bar">
+                                <div className="progress javascript" style={{ width: "65%" }}></div>
+                            </div>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+
+                    {/* 2. Frameworks */}
+                    <div className="skill-category-card">
+                        <div className="category-header">
+                        <span className="category-icon">{"{ }"}</span>
+                        <h3>Frameworks</h3>
+                        </div>
+                        <div className="skill-list">
+                        <div className="skill-item">
+                            <span className="skill-name">Django</span>
+                            <div className="progress-container">
+                            <div className="progress-bar">
+                                <div className="progress django" style={{ width: "92%" }}></div>
+                            </div>
+                            </div>
+                        </div>
+                        <div className="skill-item">
+                            <span className="skill-name">Laravel</span>
+                            <div className="progress-container">
+                            <div className="progress-bar">
+                                <div className="progress laravel" style={{ width: "68%" }}></div>
+                            </div>
+                            </div>
+                        </div>
+                        <div className="skill-item">
+                            <span className="skill-name">FastAPI</span>
+                            <div className="progress-container">
+                            <div className="progress-bar">
+                                <div className="progress fastapi" style={{ width: "80%" }}></div>
+                            </div>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+
+                    {/* 3. Databases */}
+                    <div className="skill-category-card">
+                        <div className="category-header">
+                        <span className="category-icon">🗄</span>
+                        <h3>Databases</h3>
+                        </div>
+                        <div className="skill-list">
+                        <div className="skill-item">
+                            <span className="skill-name">PostgreSQL</span>
+                            <div className="progress-container">
+                            <div className="progress-bar">
+                                <div className="progress postgresql" style={{ width: "88%" }}></div>
+                            </div>
+                            </div>
+                        </div>
+                        <div className="skill-item">
+                            <span className="skill-name">MySQL</span>
+                            <div className="progress-container">
+                            <div className="progress-bar">
+                                <div className="progress mysql" style={{ width: "65%" }}></div>
+                            </div>
+                            </div>
+                        </div>
+                        <div className="skill-item">
+                            <span className="skill-name">SQLite</span>
+                            <div className="progress-container">
+                            <div className="progress-bar">
+                                <div className="progress sqlite" style={{ width: "78%" }}></div>
+                            </div>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+
+                    {/* 4. Tools */}
+                    <div className="skill-category-card">
+                        <div className="category-header">
+                        <span className="category-icon">🛠</span>
+                        <h3>Tools</h3>
+                        </div>
+                        <div className="skill-list tools-list">
+                        <div className="tool-item">Docker</div>
+                        <div className="tool-item">Git & GitHub</div>
+                        <div className="tool-item">Linux</div>
+                        <div className="tool-item">REST APIs</div>
+                        <div className="tool-item">Telegram Bot API</div>
+                        <div className="tool-item">Agile & Scrum</div>
+                        </div>
+                    </div>
+                    </div>
                 </div>
             </section>
 
             {/* PROJECTS */}
             <section id="projects" className="section">
                 <div className="section-container">
-                    <h1>Projects Section</h1>
+                    <h2 style={{ textAlign: "center", marginBottom: "50px", fontSize: "2.5rem" }}>
+                    Projects
+                    </h2>
+
+                    {projects.length > 0 ? (
+                    <div className="projects-grid">
+                        {projects.map((project) => (
+                        <div key={project.id} className="project-card">
+                            <div className="project-content">
+                            <h3 className="project-title">
+                                {project.title || "Loyiha nomi kiritilmagan"}
+                            </h3>
+
+                            <p className="project-description">
+                                {project.description || "Tavsif mavjud emas"}
+                            </p>
+
+                            {project.technologies && Array.isArray(project.technologies) && project.technologies.length > 0 && (
+                                <div className="project-tags">
+                                {project.technologies.map((tech, idx) => (
+                                    <span key={idx} className="project-tag">
+                                    {tech.trim()}
+                                    </span>
+                                ))}
+                                </div>
+                            )}
+
+                            {project.project_url && (
+                                <a
+                                href={project.project_url}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="project-link"
+                                >
+                                <span className="link-icon">↗</span>
+                                View Project
+                                </a>
+                            )}
+                            </div>
+                        </div>
+                        ))}
+                    </div>
+                    ) : (
+                    <div className="empty-projects">
+                        <div className="empty-project-card">
+                        <div className="empty-icon">🛠️</div>
+                        <h3>Hozircha loyihalar yuklanmagan...</h3>
+                        <p>
+                            Men bir nechta qiziqarli loyihalar ustida ishlayapman.<br />
+                            Tez orada ular shu yerda paydo bo'ladi — kuzatib boring!
+                        </p>
+                        <p className="subtitle">
+                            Django, Telegram botlari, REST API va boshqa zamonaviy texnologiyalar bilan ishlayapman...
+                        </p>
+                        </div>
+                    </div>
+                    )}
                 </div>
             </section>
 
             {/* CONTACT */}
             <section id="contact" className="section section-dark">
-                <div className="section-container">
-                    <h1>Contact Me</h1>
-                    <form onSubmit={createContact} className="contact-form">
-                        <input
-                            type="text"
-                            placeholder="Your Name"
-                            value={name}
-                            onChange={(e) => setName(e.target.value)}
-                            required
-                        />
-                        <input
-                            type="email"
-                            placeholder="Your Email"
-                            value={email}
-                            onChange={(e) => setEmail(e.target.value)}
-                            required
-                        />
-                        <textarea
-                            placeholder="Your Message"
-                            value={message}
-                            onChange={(e) => setMessage(e.target.value)}
-                            required
-                        />
-                        <button type="submit">
-                            Send Message
-                        </button>
-                    </form>
+                <div className="section-container contact-grid">
+                    {/* Chap taraf — ma'lumotlar va taklif */}
+                    <div className="contact-left">
+                    <h2>Ready to collaborate?</h2>
+                    <p className="contact-subtitle">
+                        I'm always interested in discussing new opportunities, innovative projects, 
+                        and ways to contribute to meaningful software solutions. 
+                        Feel free to reach out!
+                    </p>
+
+                    <div className="contact-info">
+                        <div className="info-item">
+                        <MdEmail className="info-icon email" />
+                        <div>
+                            <strong>Email</strong>
+                            <a href="mailto:contact@sardorbek.dev">contact@sardorbek.dev</a>
+                        </div>
+                        </div>
+
+                        <div className="info-item">
+                        <MdPhone className="info-icon phone" />
+                        <div>
+                            <strong>Phone</strong>
+                            <a href="tel:+998931107913">+998 (93) 110-79-13</a>
+                        </div>
+                        </div>
+
+                        <div className="info-item">
+                        <MdLocationOn className="info-icon location" />
+                        <div>
+                            <strong>Location</strong>
+                            <span>Tashkent, Uzbekistan</span>
+                        </div>
+                        </div>
+                    </div>
+
+                    <div className="social-connect">
+                        <h4>Connect on Social Media</h4>
+                        <div className="social-buttons">
+                        <a
+                            href="https://github.com/whitewolf031" // o'zingizning haqiqiy linkingizni qo'ying
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="social-btn github"
+                        >
+                            <i className="fab fa-github"></i> GitHub
+                        </a>
+
+                        <a
+                            href="https://www.linkedin.com/in/sardorbek-ergashev-417438330/" // o'zingizning LinkedIn linkingizni qo'ying
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="social-btn linkedin"
+                        >
+                            <i className="fab fa-linkedin-in"></i> LinkedIn
+                        </a>
+                        </div>
+                    </div>
+                    </div>
+
+                    {/* O'ng taraf — forma */}
+                    <div className="contact-right">
+                    <div className="contact-form-card">
+                        <h3>Send a Message</h3>
+
+                        {formSubmitted ? (
+                        <div className="success-message">
+                            <div className="success-icon">✓</div>
+                            <h4>Message Sent Successfully!</h4>
+                            <p>Thank you! I'll get back to you as soon as possible.</p>
+                            <button 
+                            className="btn-new-message"
+                            onClick={() => {
+                                setFormSubmitted(false);
+                                setName("");
+                                setEmail("");
+                                setMessage("");
+                            }}
+                            >
+                            Send Another Message
+                            </button>
+                        </div>
+                        ) : (
+                        <form onSubmit={createContact} className="contact-form">
+                            <div className="form-group">
+                            <label>Name</label>
+                            <input
+                                type="text"
+                                placeholder="Your Name"
+                                value={name}
+                                onChange={(e) => setName(e.target.value)}
+                                required
+                            />
+                            </div>
+
+                            <div className="form-group">
+                            <label>Email</label>
+                            <input
+                                type="email"
+                                placeholder="your.email@example.com"
+                                value={email}
+                                onChange={(e) => setEmail(e.target.value)}
+                                required
+                            />
+                            </div>
+
+                            <div className="form-group">
+                            <label>Message</label>
+                            <textarea
+                                placeholder="How can I help you today?"
+                                value={message}
+                                onChange={(e) => setMessage(e.target.value)}
+                                required
+                                rows={5}
+                            />
+                            </div>
+
+                            <button type="submit" className="btn-submit" disabled={loading}>
+                            {loading ? "Sending..." : "Send Message"}
+                            </button>
+                        </form>
+                        )}
+                    </div>
+                    </div>
                 </div>
             </section>
         </div>

@@ -6,6 +6,15 @@ root = environ.Path(__file__) - 2
 env = environ.Env()
 environ.Env.read_env(env.str(root(), '.env'))
 
+TELEGRAM_BOT_TOKEN = env.str("TELEGRAM_BOT_TOKEN", default=None)
+TELEGRAM_CHAT_ID   = env.str("TELEGRAM_CHAT_ID",   default=None)
+
+# Agar muhim bo'lsa, majburiy qilish mumkin
+if not TELEGRAM_BOT_TOKEN:
+    raise ValueError("TELEGRAM_BOT_TOKEN .env faylda yo'q!")
+if not TELEGRAM_CHAT_ID:
+    raise ValueError("TELEGRAM_CHAT_ID .env faylda yo'q!")
+
 SECRET_KEY = env.str('SECRET_KEY')
 DEBUG = env.bool('DEBUG', default=False)
 ALLOWED_HOSTS = env.str('ALLOWED_HOSTS', default='').split(',')
