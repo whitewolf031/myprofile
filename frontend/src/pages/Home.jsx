@@ -3,6 +3,7 @@ import { MdLocationOn, MdEmail, MdPhone } from "react-icons/md"; // Material Des
 import { FaAlignJustify, FaCode } from "react-icons/fa";
 import api from "../api";
 import "../styles/Home.css";
+
 function Home() {
     const [formSubmitted, setFormSubmitted] = useState(false);
     const [loading, setLoading] = useState(false);
@@ -519,7 +520,9 @@ function Home() {
                         <MdPhone className="info-icon phone" />
                         <div>
                             <strong>Phone</strong>
-                            <a href="tel:+998931107913">+998 (93) 110-79-13</a>
+                            <div>
+                                <strong style={{color: "blue"}}>+998 (93) 110-79-13</strong>
+                            </div>
                         </div>
                         </div>
 
