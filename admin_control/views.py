@@ -1,8 +1,25 @@
-from .models import *
-from .serializers import *
+from .models import Blog, DevInfo, Experience, Project
+from .serializers import DevBlogSerializer, DevInfoSerializer, DevExperienceSerializer, DevProjectSerializer
 from rest_framework.permissions import IsAdminUser
 from rest_framework import viewsets
+from rest_framework.parsers import MultiPartParser, FormParser
 from drf_spectacular.utils import extend_schema
+
+
+@extend_schema(tags=['Admin blog control'])
+class DevBlogControl(viewsets.ModelViewSet):
+    queryset = Blog.objects.all()
+    serializer_class = DevBlogSerializer
+    permission_classes = [IsAdminUser]
+
+    # ⭐ Image upload ishlashi uchun juda muhim
+    parser_classes = [MultiPartParser, FormParser]
+
+    def perform_create(self, serializer):
+        serializer.save(author=self.request.user)
+
+    def perform_update(self, serializer):
+        serializer.save()
 
 @extend_schema(tags=['Admin Info Control'])
 class DevAdminInfoControl(viewsets.ModelViewSet):

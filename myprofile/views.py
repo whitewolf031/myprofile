@@ -3,8 +3,8 @@ from rest_framework.response import Response
 from rest_framework.permissions import AllowAny
 from myprofile.models import UsersInfo
 from myprofile.serializers import ContactSerializer
-from admin_control.models import (DevInfo, Experience, Project)
-from admin_control.serializers import (DevInfoSerializer, DevExperienceSerializer, DevProjectSerializer)
+from admin_control.models import (DevInfo, Experience, Project, Blog)
+from admin_control.serializers import (DevInfoSerializer, DevExperienceSerializer, DevProjectSerializer, DevBlogSerializer)
 from drf_spectacular.utils import extend_schema
 from config.settings import TELEGRAM_BOT_TOKEN, TELEGRAM_CHAT_ID
 import telebot
@@ -76,20 +76,26 @@ class ContactCreateView(generics.CreateAPIView):
             headers=headers
         )
     
-@extend_schema(tags=['User'])
+@extend_schema(tags=['Dev Info'])
 class UserDevInfoListView(generics.ListAPIView):
     queryset = DevInfo.objects.all()
     serializer_class = DevInfoSerializer
     permission_classes = [AllowAny]
 
-@extend_schema(tags=['User'])
+@extend_schema(tags=['Dev Experienct'])
 class UserDevExperienceListView(generics.ListAPIView):
     queryset = Experience.objects.all()
     serializer_class = DevExperienceSerializer
     permission_classes = [AllowAny]
 
-@extend_schema(tags=['User'])
+@extend_schema(tags=['Dev Project'])
 class UserDevProjectListView(generics.ListAPIView):
     queryset = Project.objects.all()
     serializer_class = DevProjectSerializer
+    permission_classes = [AllowAny]
+
+@extend_schema(tags=['Dev blog'])
+class UserDevProjectListView(generics.ListAPIView):
+    queryset = Blog.objects.all()
+    serializer_class = DevBlogSerializer
     permission_classes = [AllowAny]

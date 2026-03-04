@@ -1,4 +1,5 @@
 from django.db import models
+from django.conf import settings
 
 class DevInfo(models.Model):
     full_name = models.CharField(max_length=255)
@@ -64,6 +65,30 @@ class Project(models.Model):
     technologies = models.JSONField()
     project_url = models.URLField(blank=True, null=True)  # "View Project" linki
     created_at = models.DateTimeField(auto_now_add=True)  # qachon qo‘shilgan
+
+    def __str__(self):
+        return self.title
+
+class Blog(models.Model):
+    author = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.SET_NULL,
+        null=True,
+        related_name="blogs"
+    )
+
+    title = models.CharField(max_length=255)
+    content = models.TextField()
+
+    image = models.ImageField(
+        upload_to="blog_images/",
+        blank=True,
+        null=True
+    )
+
+    is_published = models.BooleanField(default=False)
+
+    created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return self.title
