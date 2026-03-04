@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from myprofile.models import *
+from myprofile.models import UsersInfo
 
 class ContactSerializer(serializers.ModelSerializer):
     class Meta:

@@ -1,5 +1,26 @@
 from rest_framework import serializers
-from .models import *
+from .models import Blog, DevInfo, Experience, Project
+
+class DevBlogSerializer(serializers.ModelSerializer):
+    author_name = serializers.CharField(
+        source="author.username",
+        read_only=True
+    )
+
+    class Meta:
+        model = Blog
+        fields = [
+            "id",
+            "author",
+            "author_name",
+            "title",
+            "content",
+            "image",
+            "is_published",
+            "created_at"
+        ]
+
+        read_only_fields = ["id", "created_at"]
 
 class DevInfoSerializer(serializers.ModelSerializer):
     class Meta:
