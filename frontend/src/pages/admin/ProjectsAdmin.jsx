@@ -1,7 +1,7 @@
 // src/components/admin/ProjectAdmin.jsx
 import { useState, useEffect } from 'react';
 import api from '../../api';
-import '../../styles/ProjectAdmin.css';
+// import '../../styles/ProjectAdmin.css';
 
 function ProjectAdmin() {
   const [data, setData] = useState([]);

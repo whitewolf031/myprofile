@@ -1,51 +1,56 @@
+// src/components/admin/AdminControl.jsx
 import React from "react";
 import { Routes, Route, Link, useLocation, useNavigate } from "react-router-dom";
 import DevInfoAdmin from "./DevInfoAdmin";
 import ExperienceAdmin from "./ExperienceAdmin";
 import ProjectAdmin from "./ProjectsAdmin";
 import "../../styles/AdminControl.css";
-import Logout from "../../pages/Logout"
+import Logout from "../Logout"
 
 function AdminControl() {
   const location = useLocation();
   const navigate = useNavigate();
-  const base = "/admin";
 
-  const currentPath = location.pathname;
+  const handleLogout = () => {
+    Logout(navigate);
+  };
+
+  const isActive = (path) => location.pathname === `/admin/${path}`;
 
   return (
-    <div className="admin-dashboard">
-      <nav className="navbar">
-        <h1 className="navbar-title">Sardorbek Ergashev</h1>
-
-        <button className="logout-btn" onClick={<Logout />}>
-          Logout
-        </button>
+    <div className="admin-layout">
+      <nav className="admin-navbar">
+        <div className="admin-navbar-inner">
+          <h1 className="admin-title">Sardorbek Ergashev</h1>
+          <button className="admin-logout-btn" onClick={handleLogout}>
+            Logout
+          </button>
+        </div>
       </nav>
 
-      <div className="content-wrapper">
-        <aside className="sidebar">
-          <ul className="sidebar-menu">
+      <div className="admin-body">
+        <aside className="admin-sidebar">
+          <ul>
             <li>
               <Link
-                to={`${base}/information`}
-                className={`sidebar-button ${currentPath === `${base}/information` ? "active" : ""}`}
+                to="information"
+                className={`admin-link ${isActive("information") ? "active" : ""}`}
               >
                 Information
               </Link>
             </li>
             <li>
               <Link
-                to={`${base}/experience`}
-                className={`sidebar-button ${currentPath === `${base}/experience` ? "active" : ""}`}
+                to="experience"
+                className={`admin-link ${isActive("experience") ? "active" : ""}`}
               >
                 Experience
               </Link>
             </li>
             <li>
               <Link
-                to={`${base}/projects`}
-                className={`sidebar-button ${currentPath === `${base}/projects` ? "active" : ""}`}
+                to="projects"
+                className={`admin-link ${isActive("projects") ? "active" : ""}`}
               >
                 Projects
               </Link>
@@ -53,20 +58,17 @@ function AdminControl() {
           </ul>
         </aside>
 
-        <main className="main-content">
+        <main className="admin-content">
           <Routes>
-            <Route path="/information" element={<DevInfoAdmin />} />
-            <Route path="/experience" element={<ExperienceAdmin />} />
-            <Route path="/projects" element={<ProjectAdmin />} />
-            <Route
-              path="/"
-              element={
-                <div className="welcome-message">
-                  <h2>Admin paneliga xush kelibsiz</h2>
-                  <p>Chap tarafdagi menyudan bo'limni tanlang</p>
-                </div>
-              }
-            />
+            <Route index element={
+              <div className="admin-welcome">
+                <h2>Admin paneliga xush kelibsiz</h2>
+                <p>Chap tarafdagi menyudan bo'limni tanlang</p>
+              </div>
+            }/>
+            <Route path="information" element={<DevInfoAdmin />} />
+            <Route path="experience" element={<ExperienceAdmin />} />
+            <Route path="projects" element={<ProjectAdmin />} />
             <Route path="*" element={<h2>404 - Sahifa topilmadi</h2>} />
           </Routes>
         </main>
