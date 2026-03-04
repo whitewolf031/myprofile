@@ -1,6 +1,8 @@
-function Logout() {
-  localStorage.clear();
-  return <Navigate to="/" />;
-}
+// src/components/Logout.jsx
 
-export default Logout
+const Logout = (navigate) => {
+  localStorage.clear();
+  navigate("/");   // yoki "/login"
+};
+
+export default Logout;

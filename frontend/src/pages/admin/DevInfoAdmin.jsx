@@ -1,7 +1,7 @@
 // src/components/admin/DevInfoAdmin.jsx
 import { useState, useEffect } from 'react';
 import api from '../../api';
-import '../../styles/DevInfoAdmin.css';
+// import '../../styles/DevInfoAdmin.css';
 
 function DevInfoAdmin() {
   const [data, setData] = useState([]);

@@ -1,7 +1,7 @@
 // src/components/admin/ExperienceAdmin.jsx
 import { useState, useEffect } from 'react';
 import api from '../../api';
-import '../../styles/ExperienceAdmin.css';
+// import '../../styles/ExperienceAdmin.css';
 
 function ExperienceAdmin() {
   const [data, setData] = useState([]);
