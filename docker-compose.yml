@@ -1,15 +1,13 @@
-version: '3.8'
-
 services:
   db:
     image: postgres:17
     restart: always
     environment:
-      POSTGRES_DB: ${DATABASE_NAME}
-      POSTGRES_USER: ${DATABASE_USER}
-      POSTGRES_PASSWORD: ${DATABASE_PASSWORD}
+      POSTGRES_DB: ${PGDATABASE}
+      POSTGRES_USER: ${PGUSER}
+      POSTGRES_PASSWORD: ${PGPASSWORD}
     volumes:
-      - postgres_data:/var/lib/postgresql/data/
+      - postgres_data:/var/lib/postgresql/data
     env_file:
       - .env
 
@@ -24,3 +22,6 @@ services:
       - db
     env_file:
       - .env
+
+volumes:
+  postgres_data:

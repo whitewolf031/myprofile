@@ -6,6 +6,7 @@ import "../styles/Home.css";
 
 function Home() {
     const [formSubmitted, setFormSubmitted] = useState(false);
+    const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [loading, setLoading] = useState(false);
     const [profile, setProfile] = useState(null);
     const [experience, setExperience] = useState([]);
@@ -119,8 +120,14 @@ function Home() {
                             Sardorbek Ergashev
                         </a>
                     </div>
+                    <button 
+                        className="mobile-menu-btn"
+                        onClick={() => setIsMenuOpen(!isMenuOpen)}
+                    >
+                        <FaAlignJustify />
+                    </button>
                     {/* Desktop Menu */}
-                    <div className="nav-menu">
+                    <div className={`nav-menu ${isMenuOpen ? "mobile-open" : ""}`}>
                         {sections.map((section) => (
                             <button
                                 key={section}
@@ -131,6 +138,7 @@ function Home() {
                             >
                                 {section.toUpperCase()}
                             </button>
+                            
                         ))}
                     </div>
                 </div>

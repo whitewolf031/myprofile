@@ -95,7 +95,7 @@ class UserDevProjectListView(generics.ListAPIView):
     permission_classes = [AllowAny]
 
 @extend_schema(tags=['Dev blog'])
-class UserDevProjectListView(generics.ListAPIView):
+class UserDevBlogtListView(generics.ListAPIView):
     queryset = Blog.objects.all()
     serializer_class = DevBlogSerializer
     permission_classes = [AllowAny]

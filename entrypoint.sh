@@ -1,8 +1,10 @@
 #!/bin/sh
 
+echo "Running migrations..."
 python manage.py migrate --noinput
 
-# Superuser mavjudligini tekshir va yo‘q bo‘lsa yarat
+echo "Checking superuser..."
+
 python manage.py shell <<EOF
 from django.contrib.auth import get_user_model
 import os
@@ -14,10 +16,10 @@ password = os.getenv("DJANGO_SUPERUSER_PASSWORD", "admin123")
 
 if not User.objects.filter(username=username).exists():
     User.objects.create_superuser(username=username, email=email, password=password)
-    print("✅ Superuser created:", username)
+    print("Superuser created:", username)
 else:
-    print("ℹ️ Superuser already exists:", username)
+    print("Superuser already exists:", username)
 EOF
 
-# Django serverni ishga tushirish
+echo "Starting server..."
 exec "$@"
