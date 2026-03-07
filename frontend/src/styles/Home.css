@@ -854,3 +854,103 @@
     font-size: 1rem;
   }
 }
+
+/* ===== MOBILE NAVBAR ===== */
+
+@media (max-width: 768px) {
+
+.nav-menu {
+    position: absolute;
+    top: 70px;
+    right: 0;
+    background: rgba(17,24,39,0.98);
+    width: 220px;
+    flex-direction: column;
+    padding: 20px;
+    border-left: 1px solid #374151;
+    border-bottom: 1px solid #374151;
+    display: none;
+}
+
+.nav-menu.mobile-open {
+    display: flex;
+}
+
+.nav-button {
+    text-align: left;
+    padding: 10px 0;
+}
+
+/* Navbar content stack */
+.nav-content {
+    flex-direction: row;
+}
+
+/* Hero title responsive */
+.hero-title {
+    font-size: 36px !important;
+}
+
+/* Hero subtitle */
+.hero-subtitle {
+    font-size: 18px;
+}
+
+/* Grid collapse */
+.grid-2 {
+    grid-template-columns: 1fr;
+}
+
+/* Experience card mobile */
+.experience-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+}
+
+.experience-meta {
+    flex-direction: column;
+    gap: 8px;
+}
+
+/* Experience details */
+.experience-details {
+    grid-template-columns: 1fr;
+}
+
+/* Projects grid */
+.projects-grid {
+    grid-template-columns: 1fr;
+}
+
+/* Contact grid */
+.contact-grid {
+    grid-template-columns: 1fr;
+}
+
+/* Card hover scale disable mobile */
+.card:hover,
+.project-card:hover,
+.experience-card:hover {
+    transform: none;
+}
+
+}
+
+.mobile-menu-btn {
+    display: none;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 24px;
+}
+
+@media (max-width: 768px) {
+    .mobile-menu-btn {
+        display: block;
+    }
+
+    .nav-menu {
+        display: none;
+    }
+}

@@ -17,7 +17,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY . /app/
 
 # entrypoint.sh faylini nusxalash va ruxsat berish
-COPY entrypoint.sh /app/
+COPY entrypoint.sh /app/entrypoint.sh
 RUN chmod +x /app/entrypoint.sh
 
 EXPOSE 8000

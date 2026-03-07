@@ -33,7 +33,7 @@ function AdminControl() {
           <ul>
             <li>
               <Link
-                to="information"
+                to="/admin/information"
                 className={`admin-link ${isActive("information") ? "active" : ""}`}
               >
                 Information
@@ -41,7 +41,7 @@ function AdminControl() {
             </li>
             <li>
               <Link
-                to="experience"
+                to="/admin/experience"
                 className={`admin-link ${isActive("experience") ? "active" : ""}`}
               >
                 Experience
@@ -49,7 +49,7 @@ function AdminControl() {
             </li>
             <li>
               <Link
-                to="projects"
+                to="/admin/projects"
                 className={`admin-link ${isActive("projects") ? "active" : ""}`}
               >
                 Projects
