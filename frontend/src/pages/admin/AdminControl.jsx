@@ -1,10 +1,12 @@
 // src/components/admin/AdminControl.jsx
 import React from "react";
 import { Routes, Route, Link, useLocation, useNavigate } from "react-router-dom";
-import DevInfoAdmin from "./DevInfoAdmin";
-import ExperienceAdmin from "./ExperienceAdmin";
-import ProjectAdmin from "./ProjectsAdmin";
+import ActivitiesAdmin from "./ActivitiesAdmin";
+import AboutAdmin from "./AboutAdmin";
+import ProjectsAdmin from "./ProjectsAdmin";
+import BlogAdmin from "./BlogAdmin";
 import "../../styles/AdminControl.css";
+import "../../styles/AdminForms.css";
 import Logout from "../Logout"
 
 function AdminControl() {
@@ -17,11 +19,18 @@ function AdminControl() {
 
   const isActive = (path) => location.pathname === `/admin/${path}`;
 
+  const links = [
+    { path: "activities", label: "Activities" },
+    { path: "about", label: "About Me" },
+    { path: "projects", label: "Projects" },
+    { path: "blog", label: "Blog" },
+  ];
+
   return (
     <div className="admin-layout">
       <nav className="admin-navbar">
         <div className="admin-navbar-inner">
-          <h1 className="admin-title">Sardorbek Ergashev</h1>
+          <h1 className="admin-title">Admin Panel</h1>
           <button className="admin-logout-btn" onClick={handleLogout}>
             Logout
           </button>
@@ -31,30 +40,16 @@ function AdminControl() {
       <div className="admin-body">
         <aside className="admin-sidebar">
           <ul>
-            <li>
-              <Link
-                to="/admin/information"
-                className={`admin-link ${isActive("information") ? "active" : ""}`}
-              >
-                Information
-              </Link>
-            </li>
-            <li>
-              <Link
-                to="/admin/experience"
-                className={`admin-link ${isActive("experience") ? "active" : ""}`}
-              >
-                Experience
-              </Link>
-            </li>
-            <li>
-              <Link
-                to="/admin/projects"
-                className={`admin-link ${isActive("projects") ? "active" : ""}`}
-              >
-                Projects
-              </Link>
-            </li>
+            {links.map((l) => (
+              <li key={l.path}>
+                <Link
+                  to={`/admin/${l.path}`}
+                  className={`admin-link ${isActive(l.path) ? "active" : ""}`}
+                >
+                  {l.label}
+                </Link>
+              </li>
+            ))}
           </ul>
         </aside>
 
@@ -66,9 +61,10 @@ function AdminControl() {
                 <p>Chap tarafdagi menyudan bo'limni tanlang</p>
               </div>
             }/>
-            <Route path="information" element={<DevInfoAdmin />} />
-            <Route path="experience" element={<ExperienceAdmin />} />
-            <Route path="projects" element={<ProjectAdmin />} />
+            <Route path="activities" element={<ActivitiesAdmin />} />
+            <Route path="about" element={<AboutAdmin />} />
+            <Route path="projects" element={<ProjectsAdmin />} />
+            <Route path="blog" element={<BlogAdmin />} />
             <Route path="*" element={<h2>404 - Sahifa topilmadi</h2>} />
           </Routes>
         </main>

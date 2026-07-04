@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import ImageGalleryEditor from "../../components/ImageGalleryEditor";
 import api from "../../api";
 
-function ProjectsAdmin() {
+function AboutAdmin() {
   const [data, setData] = useState(null);
   const [content, setContent] = useState("");
   const [newFiles, setNewFiles] = useState([]);
@@ -10,7 +10,7 @@ function ProjectsAdmin() {
 
   function fetchData() {
     api
-      .get("/api/dev/projects/")
+      .get("/api/dev/info/")
       .then((res) => {
         setData(res.data);
         setContent(res.data?.content || "");
@@ -25,7 +25,7 @@ function ProjectsAdmin() {
   const handleDeleteImage = async (imageId) => {
     if (!window.confirm("Bu rasmni o'chirmoqchimisiz?")) return;
     try {
-      await api.delete(`/api/admin-control/projects/images/${imageId}/`);
+      await api.delete(`/api/admin-control/dev/images/${imageId}/`);
       fetchData();
     } catch (err) {
       console.error(err);
@@ -41,7 +41,7 @@ function ProjectsAdmin() {
       fd.append("content", content);
       newFiles.forEach((file) => fd.append("new_images", file));
 
-      await api.patch("/api/admin-control/projects/", fd);
+      await api.patch("/api/admin-control/dev/", fd);
       setNewFiles([]);
       fetchData();
       alert("Saqlandi");
@@ -54,10 +54,10 @@ function ProjectsAdmin() {
   };
 
   return (
-    <div className="projects-admin">
-      <h2>Projects</h2>
+    <div className="about-admin">
+      <h2>About Me</h2>
       <p className="admin-hint">
-        Bu yerdagi matn va rasmlar "/projects" sahifasida chiqadi. Har bir
+        Bu yerdagi matn va rasmlar "/about" sahifasida chiqadi. Har bir
         paragrafdan keyin navbatdagi rasm joylashadi (frontend avtomatik
         joylashtiradi), rasmlar soni cheklanmagan.
       </p>
@@ -88,4 +88,4 @@ function ProjectsAdmin() {
   );
 }
 
-export default ProjectsAdmin;
+export default AboutAdmin;

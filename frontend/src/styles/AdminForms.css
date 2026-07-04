@@ -1,0 +1,239 @@
+/* Shared admin CRUD styling - used by ActivitiesAdmin, AboutAdmin,
+   ProjectsAdmin, BlogAdmin */
+
+.admin-layout h2 {
+  color: #f9fafb;
+  margin-bottom: 1rem;
+  font-size: 1.4rem;
+}
+
+.create-button {
+  background: linear-gradient(90deg, #3b82f6, #2563eb);
+  border: none;
+  color: white;
+  padding: 0.6rem 1.2rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.create-button:hover {
+  filter: brightness(1.08);
+}
+
+.divider {
+  border: none;
+  border-top: 1px solid #374151;
+  margin: 1rem 0 1.5rem;
+}
+
+.no-data {
+  color: #9ca3af;
+  font-style: italic;
+}
+
+.admin-layout .info-box,
+.admin-layout .experience-box,
+.admin-layout .project-box,
+.admin-layout .activity-box,
+.admin-layout .section-box,
+.admin-layout .blog-box {
+  background: #1f2937;
+  border: 1px solid #374151;
+  border-radius: 10px;
+  padding: 1.2rem;
+  margin-bottom: 1.2rem;
+  position: relative;
+}
+
+.admin-layout .box-title {
+  color: #60a5fa;
+  margin-bottom: 0.4rem;
+  font-size: 1.1rem;
+  padding-right: 150px;
+}
+
+.admin-layout .box-stack,
+.admin-layout .box-company,
+.admin-layout .box-about,
+.admin-layout .box-description,
+.admin-layout .box-type-location,
+.admin-layout .box-dates {
+  color: #d1d5db;
+  margin-bottom: 0.3rem;
+  font-size: 0.92rem;
+}
+
+.current-badge {
+  background: rgba(16, 185, 129, 0.15);
+  color: #34d399;
+  font-size: 0.7rem;
+  padding: 2px 8px;
+  border-radius: 999px;
+  margin-left: 8px;
+}
+
+.tech-stack {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  margin-top: 0.5rem;
+}
+
+.tech-tag {
+  background: rgba(96, 165, 250, 0.12);
+  color: #60a5fa;
+  font-size: 0.75rem;
+  padding: 3px 10px;
+  border-radius: 999px;
+}
+
+.no-tech {
+  color: #6b7280;
+}
+
+.box-image-preview {
+  width: 100%;
+  max-width: 260px;
+  border-radius: 8px;
+  margin-top: 0.6rem;
+  display: block;
+}
+
+/* Forms */
+.info-form,
+.experience-form,
+.project-form,
+.activity-form,
+.section-form,
+.blog-form {
+  background: #1f2937;
+  border: 1px solid #374151;
+  border-radius: 12px;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+  margin-bottom: 1.5rem;
+  max-width: 560px;
+}
+
+.form-title {
+  color: #f9fafb;
+  margin-bottom: 0.4rem;
+}
+
+.admin-layout .form-input,
+.admin-layout .form-textarea {
+  background: #111827;
+  border: 1px solid #374151;
+  color: #e5e7eb;
+  padding: 0.65rem 0.9rem;
+  border-radius: 8px;
+  font-size: 0.92rem;
+  width: 100%;
+  font-family: inherit;
+}
+
+.admin-layout .form-input:focus,
+.admin-layout .form-textarea:focus {
+  outline: none;
+  border-color: #60a5fa;
+}
+
+.admin-layout .form-textarea {
+  resize: vertical;
+  min-height: 90px;
+}
+
+.admin-layout select.form-input {
+  cursor: pointer;
+}
+
+.form-file-input {
+  color: #d1d5db;
+  font-size: 0.85rem;
+}
+
+.checkbox-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #d1d5db;
+  font-size: 0.9rem;
+}
+
+.form-actions {
+  display: flex;
+  gap: 0.6rem;
+  margin-top: 0.4rem;
+}
+
+.save-button {
+  background: linear-gradient(90deg, #10b981, #059669);
+  border: none;
+  color: white;
+  padding: 0.55rem 1.3rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.cancel-button {
+  background: #374151;
+  border: none;
+  color: #d1d5db;
+  padding: 0.55rem 1.3rem;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.save-button:hover {
+  filter: brightness(1.08);
+}
+
+.cancel-button:hover {
+  background: #4b5563;
+}
+
+.quick-log-button {
+  background: linear-gradient(90deg, #3b82f6, #2563eb);
+  border: none;
+  color: white;
+  padding: 0.6rem 1.2rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  margin-right: 0.6rem;
+}
+
+.activity-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 0.6rem;
+}
+
+.activity-table th,
+.activity-table td {
+  text-align: left;
+  padding: 0.6rem 0.8rem;
+  border-bottom: 1px solid #374151;
+  color: #d1d5db;
+  font-size: 0.9rem;
+}
+
+.activity-table th {
+  color: #9ca3af;
+  font-weight: 600;
+  font-size: 0.78rem;
+  text-transform: uppercase;
+}
+
+.admin-hint {
+  color: #9ca3af;
+  font-size: 0.85rem;
+  margin-bottom: 1rem;
+}
