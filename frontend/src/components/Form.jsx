@@ -3,7 +3,7 @@ import api from "../api";
 import { useNavigate } from "react-router-dom";
 import { ACCESS_TOKEN, REFRESH_TOKEN } from "../constants";
 import "../styles/Form.css";
-import LoadingIndicator from "./Loadingindicator";
+import LoadingIndicator from "./LoadingIndicator";
 
 function LoginForm() {
     const [username, setUsername] = useState("");
@@ -26,7 +26,7 @@ function LoginForm() {
             localStorage.setItem(REFRESH_TOKEN, res.data.refresh);
 
             navigate("/admin"); // login bo‘lgandan keyin home ga o‘tadi
-        } catch (error) {
+        } catch {
             alert("Login yoki parol noto‘g‘ri");
         } finally {
             setLoading(false);
@@ -34,33 +34,36 @@ function LoginForm() {
     };
 
     return (
-        <form onSubmit={handleSubmit} className="form-container">
-            <h1>Login</h1>
+        <div className="login-page">
+            <form onSubmit={handleSubmit} className="form-container">
+                <div className="form-brand">🔐</div>
+                <h1>Admin Login</h1>
 
-            <input
-                className="form-input"
-                type="text"
-                value={username}
-                onChange={(e) => setUsername(e.target.value)}
-                placeholder="Username"
-                required
-            />
+                <input
+                    className="form-input"
+                    type="text"
+                    value={username}
+                    onChange={(e) => setUsername(e.target.value)}
+                    placeholder="Username"
+                    required
+                />
 
-            <input
-                className="form-input"
-                type="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                placeholder="Password"
-                required
-            />
+                <input
+                    className="form-input"
+                    type="password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    placeholder="Password"
+                    required
+                />
 
-            {loading && <LoadingIndicator />}
+                {loading && <LoadingIndicator />}
 
-            <button className="form-button" type="submit">
-                Login
-            </button>
-        </form>
+                <button className="form-button" type="submit">
+                    Login
+                </button>
+            </form>
+        </div>
     );
 }
 

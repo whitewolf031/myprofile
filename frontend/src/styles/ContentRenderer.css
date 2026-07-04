@@ -1,0 +1,34 @@
+.content-blocks {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+.content-paragraph {
+  font-size: 1.05rem;
+  line-height: 1.75;
+  color: var(--text-primary);
+  margin: 0;
+}
+
+.content-image {
+  width: 100%;
+  border-radius: 16px;
+  object-fit: cover;
+  display: block;
+  max-height: 520px;
+}
+
+.content-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 14px;
+  margin-top: 6px;
+}
+
+.content-gallery-image {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  border-radius: 12px;
+}
