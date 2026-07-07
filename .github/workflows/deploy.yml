@@ -26,10 +26,13 @@ jobs:
 
         run: |
           sshpass -p "$SSH_PASSWORD" ssh \
+            -T \
             -o StrictHostKeyChecking=no \
             $SSH_USER@$SSH_HOST << 'EOF'
 
-          cd /projects/myprofile
+          set -e
+
+          cd ~/projects/myprofile
 
           echo "Pull latest code..."
           git pull origin main
@@ -37,7 +40,7 @@ jobs:
           echo "Stopping containers..."
           docker compose down
 
-          echo "Building and starting containers..."
+          echo "Building containers..."
           docker compose up -d --build
 
           echo "Running migrations..."
