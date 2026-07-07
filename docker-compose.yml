@@ -1,6 +1,7 @@
 services:
   db:
     image: postgres:17
+    container_name: myprofile_postgres
     restart: always
     env_file:
       - myprofile_backend/.env
