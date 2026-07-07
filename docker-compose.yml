@@ -24,7 +24,7 @@ services:
       db:
         condition: service_healthy
     ports:
-      - "8017:8000"
+      - "8017:8017"
     volumes:
       - ./myprofile_backend:/app
       - media_volume:/app/media
@@ -35,10 +35,9 @@ services:
     restart: always
     env_file:
       - frontend/.env
-    volumes:
-      - frontend_build:/app/dist
+    ports:
+      - "3015:3015"
 
 volumes:
   postgres_data:
-  frontend_build:
   media_volume:
